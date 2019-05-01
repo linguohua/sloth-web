@@ -19,7 +19,7 @@
       <el-input v-model="bundleArrayLength" readonly></el-input>
     </el-form-item>
     <el-form-item size="large">
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
+      <el-button type="primary" @click="onSubmit">保存</el-button>
       <el-button @click="onCancel">取消</el-button>
     </el-form-item>
   </el-form>

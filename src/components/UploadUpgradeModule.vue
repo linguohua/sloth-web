@@ -61,7 +61,6 @@ export default {
       reader.readAsText(this.fileList[0].raw);
     },
     onUploadOK() {
-      this.dialogVisible = false;
       this.$emit("reload");
     }
   }

@@ -64,6 +64,7 @@
             <el-dropdown-item command="view">查看</el-dropdown-item>
             <el-dropdown-item command="add">新增</el-dropdown-item>
             <el-dropdown-item command="del">删除</el-dropdown-item>
+            <el-dropdown-item command="cond">条件</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
         <span>日光哥哥</span>
@@ -91,6 +92,8 @@
         </el-table>
         <UploadUpgradeModule ref="uploadDialog" v-on:reload="onReload"/>
         <ViewUpgradeModule ref="viewDialog" v-on:reload="onReload"/>
+        <ViewUpgradeModule ref="viewDialog" v-on:reload="onReload"/>
+        <Conditions ref="condDialog" :title="condDialogTitle" v-on:reload="onReload"/>
       </el-main>
     </el-container>
   </el-container>
@@ -112,16 +115,19 @@
 import api from "./API.vue";
 import UploadUpgradeModule from "./UploadUpgradeModule.vue";
 import ViewUpgradeModule from "./ViewUpgradeModule.vue";
+import Conditions from "./Conditions.vue";
 export default {
   components: {
     UploadUpgradeModule: UploadUpgradeModule,
-    ViewUpgradeModule: ViewUpgradeModule
+    ViewUpgradeModule: ViewUpgradeModule,
+    Conditions: Conditions
   },
   data() {
     return {
       tableData: [],
       multipleSelection: [],
-      currentRow: null
+      currentRow: null,
+      condDialogTitle: ""
     };
   },
   methods: {
@@ -158,6 +164,12 @@ export default {
         }
       } else if (command === "del") {
         this.doDeleteModules();
+      } else if (command === "cond") {
+        if (this.currentRow) {
+          this.condDialogTitle = "[" + this.currentRow.name + "] 条件编辑";
+          this.$refs["condDialog"].dialogVisible = true;
+          this.$refs["condDialog"].bind(this.currentRow);
+        }
       }
     },
     doDeleteModules() {
