@@ -25,7 +25,7 @@
   </el-form>
 </template>
 <script>
-import api from "./API.vue";
+import api from "../API.vue";
 export default {
   data() {
     return { modulecfg: {} };

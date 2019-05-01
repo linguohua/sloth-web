@@ -50,7 +50,7 @@
 
 <script>
 import ConditionAdd from "./ConditionAdd.vue";
-import api from "./API.vue";
+import api from "../API.vue";
 export default {
   components: {
     ConditionAdd: ConditionAdd
